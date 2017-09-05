@@ -20,8 +20,14 @@ int main(int argc, const char * argv[]) {
             // limit input to max 255 characters
             fgets(inputChars, 255, stdin);
             
+            //converting a C String to an NSString
             NSString *inputString = [NSString stringWithCString:inputChars encoding:NSUTF8StringEncoding];
             NSLog(@"%@", inputString);
+            
+            //Parsing User Input
+            
+            NSString *parseInput = [inputString stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+            NSLog(@"%@", parseInput);
         }
         
     }
