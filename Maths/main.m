@@ -7,29 +7,41 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "AdditionQuestion.h"
+#import "InputHandler.h"
+#import "ScoreKeeper.h"
 
 int main(int argc, const char * argv[]) {
-    @autoreleasepool {
-        
-        BOOL mathsGame = YES;
-        
-        while ((mathsGame = YES)) {
+        @autoreleasepool {
+            BOOL gameOn = YES;
             
-            char inputChars[255];
-            printf("Input a string: ");
-            // limit input to max 255 characters
-            fgets(inputChars, 255, stdin);
+            ScoreKeeper *trackScore = [[ScoreKeeper alloc] init];
             
-            //converting a C String to an NSString
-            NSString *inputString = [NSString stringWithCString:inputChars encoding:NSUTF8StringEncoding];
-            NSLog(@"%@", inputString);
-            
-            //Parsing User Input
-            
-            NSString *parseInput = [inputString stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
-            NSLog(@"%@", parseInput);
+            while (gameOn) {
+                AdditionQuestion *createQuestion = [[AdditionQuestion alloc] init];
+                NSLog(@"%@", createQuestion.question);
+                
+                InputHandler *parsedInput = [[InputHandler alloc] init];
+                NSString *parsedAnswer = [parsedInput parseAnswer];
+                
+                
+                if ([parsedAnswer isEqual: @"quit"]) {
+                    break;
+                } else {
+                    NSInteger userAnswerInInteger = [parsedAnswer intValue];
+                    if (createQuestion.answer == userAnswerInInteger) {
+                        NSLog(@"Right!");
+                        trackScore.correct++;
+                        [trackScore generateScore];
+                    }   else {
+                        NSLog(@"Wrong!");
+                        trackScore.incorrect++;
+                        [trackScore generateScore];
+                    }
+                }
+                
         }
-        
     }
     return 0;
 }
+
