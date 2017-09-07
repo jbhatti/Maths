@@ -23,7 +23,7 @@
 - (Question *) genRandomQuestion {
 
     NSArray *questionSubclassNames = @[@"AdditionQuestion", @"SubtractionQuestion", @"DivisionQuestion", @"MultiplicationQuestion"];
-    int randomNum = arc4random_uniform(3);
+    int randomNum = arc4random_uniform(4);
     NSString* randomOperationGenerator = questionSubclassNames[randomNum];
     
     return [[NSClassFromString(randomOperationGenerator) alloc] init];
