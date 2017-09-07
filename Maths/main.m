@@ -7,18 +7,25 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "AdditionQuestion.h"
+#import "Question.h"
 #import "InputHandler.h"
 #import "ScoreKeeper.h"
+#import "QuestionManager.h"
+#import "QuestionFactory.h"
 
 int main(int argc, const char * argv[]) {
         @autoreleasepool {
             BOOL gameOn = YES;
             
             ScoreKeeper *trackScore = [[ScoreKeeper alloc] init];
+            QuestionManager *newQuestionManager = [[QuestionManager alloc] init];
+            QuestionFactory *newQuestionFactory = [[QuestionFactory alloc] init];
+            
             
             while (gameOn) {
-                AdditionQuestion *createQuestion = [[AdditionQuestion alloc] init];
+                Question *createQuestion = [newQuestionFactory genRandomQuestion];
+                [newQuestionManager.questions addObject:createQuestion];
+                
                 NSLog(@"%@", createQuestion.question);
                 
                 InputHandler *parsedInput = [[InputHandler alloc] init];
@@ -33,10 +40,12 @@ int main(int argc, const char * argv[]) {
                         NSLog(@"Right!");
                         trackScore.correct++;
                         [trackScore generateScore];
+                        [newQuestionManager timeOutput];
                     }   else {
                         NSLog(@"Wrong!");
                         trackScore.incorrect++;
                         [trackScore generateScore];
+                        [newQuestionManager timeOutput];
                     }
                 }
                 

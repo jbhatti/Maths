@@ -6,26 +6,21 @@
 //  Copyright © 2017 Jaison Bhatti. All rights reserved.
 //
 
-#import "AdditionQuestion.h"
+#import "Question.h"
 
-@implementation AdditionQuestion
+@implementation Question
 
 - (instancetype)init {
     self = [super init];
         if (self) {
-            int randomNum1;
-            int randomNum2;
-            randomNum1 = arc4random_uniform(91) + 10;
-            randomNum2 = arc4random_uniform(91) + 10;
+            _rightValue = arc4random_uniform(91) + 10;
+            _leftValue = arc4random_uniform(91) + 10;
             
-            NSString * generateQuestion = [NSString stringWithFormat:@"%i + %i", randomNum1, randomNum2];
+            NSString * generateQuestion = [NSString stringWithFormat:@"%li + %li", (long)self.leftValue, (long)self.rightValue];
             
             _question = generateQuestion;
             
-            int sumOfTwoRandomNums;
-            sumOfTwoRandomNums = randomNum1 + randomNum2;
-            
-            _answer = sumOfTwoRandomNums;
+            _answer = (_leftValue + _rightValue);
             
             _startTime = [NSDate date];
         }
@@ -42,6 +37,10 @@
 - (NSTimeInterval)answerTime {
     NSTimeInterval duration = [_endTime timeIntervalSinceDate:_startTime];
     return duration;
+}
+
+- (void) genQuestion {
+    
 }
 
 
