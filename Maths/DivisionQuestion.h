@@ -1,5 +1,5 @@
 //
-//  AdditionQuestion.h
+//  DivisionQuestion.h
 //  Maths
 //
 //  Created by Jaison Bhatti on 2017-09-06.
@@ -8,6 +8,6 @@
 
 #import "Question.h"
 
-@interface AdditionQuestion : Question
+@interface DivisionQuestion : Question
 
 @end

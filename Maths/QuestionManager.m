@@ -1,13 +1,13 @@
 //
-//  AdditionQuestion.h
+//  QuestionManager.m
 //  Maths
 //
 //  Created by Jaison Bhatti on 2017-09-06.
 //  Copyright © 2017 Jaison Bhatti. All rights reserved.
 //
 
-#import "Question.h"
+#import "QuestionManager.h"
 
-@interface AdditionQuestion : Question
+@implementation QuestionManager
 
 @end
